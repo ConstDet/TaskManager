@@ -19,11 +19,14 @@ public class Todos {
     }
 
     public void removeTask(String task) {
-        taskTreeSet.remove("task");
+        taskTreeSet.remove(task);
     }
 
     public String getAllTasks() {
-        return taskTreeSet.stream().toString();
+        Optional<String> optionalS = taskTreeSet.stream()
+                .map(Object::toString)
+                .reduce((x, y) -> x + " " + y);
+        return optionalS.get();
     }
 
 }

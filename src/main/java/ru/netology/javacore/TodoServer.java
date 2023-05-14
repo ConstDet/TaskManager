@@ -1,9 +1,6 @@
 package ru.netology.javacore;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -27,8 +24,9 @@ public class TodoServer {
                      BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
                     Gson gson = new GsonBuilder().create();
                     JsonParser parser = new JsonParser();
-                    Object obj = parser.parse(gson.toJson(in.readLine()));
-                    operation(obj);
+                    Object obj = parser.parse(in.readLine());
+                    JsonObject jsonObject = (JsonObject) obj;
+                    operation(jsonObject);
                     String deleteString = todos.getAllTasks();
                     out.println(deleteString);
                 }
@@ -36,15 +34,14 @@ public class TodoServer {
         }
     }
 
-    private void operation(Object obj) {
-        JsonObject jsonObject = (JsonObject) obj;
-        String typeOperation = jsonObject.get("type").getAsString();
+    private void operation(JsonObject obj) {
+        String typeOperation = obj.get("type").getAsString();
         switch (typeOperation) {
             case "ADD":
-                todos.addTask(jsonObject.get("task").getAsString());
+                todos.addTask(obj.get("task").getAsString());
                 break;
             case "REMOVE":
-                todos.removeTask(jsonObject.get("task").getAsString());
+                todos.removeTask(obj.get("task").getAsString());
                 break;
             default:
                 throw new RuntimeException();
