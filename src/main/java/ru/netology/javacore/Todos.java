@@ -7,25 +7,23 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Todos {
-    private Set<String> taskList;
+    private Set<String> taskTreeSet;
 
     public Todos() {
-        taskList = new TreeSet<>();
+        taskTreeSet = new TreeSet<>();
     }
 
     public void addTask(String task) {
-        if (task == null || task.equals("")) return;
-        Gson gson = new GsonBuilder().create();
-        String taskString = gson.toJson(task);
-
+        if (taskTreeSet.size() > 6) return;
+        taskTreeSet.add(task);
     }
 
     public void removeTask(String task) {
-        //...
+        taskTreeSet.remove("task");
     }
 
     public String getAllTasks() {
-        //...
+        return taskTreeSet.stream().toString();
     }
 
 }
