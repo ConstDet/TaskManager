@@ -1,13 +1,9 @@
 package ru.netology.javacore;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Todos {
-    private Set<String> taskTreeSet;
+    protected Set<String> taskTreeSet;
 
     public Todos() {
         taskTreeSet = new TreeSet<>();
