@@ -42,4 +42,22 @@ class TodosTest {
 
         Assertions.assertEquals(expect, preference);
     }
+
+    @Test
+    void restore() {
+        TreeSet<String> expect = new TreeSet<>();
+        expect.add("Первая");
+        expect.add("Вторая");
+
+        Todos todos = new Todos();
+        todos.addTask("Первая");
+        todos.addTask("Вторая");
+        todos.removeTask("Первая");
+        todos.addTask("Третья");
+        todos.restore();
+        todos.restore();
+        TreeSet<String> preference = (TreeSet<String>) todos.taskTreeSet;
+
+        Assertions.assertEquals(expect, preference);
+    }
 }

@@ -43,7 +43,11 @@ public class TodoServer {
             case "REMOVE":
                 todos.removeTask(obj.get("task").getAsString());
                 break;
+            case "RESTORE":
+                todos.restore();
+                break;
             default:
+                System.out.println("Неизвестная операция - " + typeOperation);
                 throw new RuntimeException();
         }
     }
