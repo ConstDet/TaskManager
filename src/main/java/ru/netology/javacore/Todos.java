@@ -23,6 +23,7 @@ public class Todos {
     }
 
     public void restore() {
+        if (restoreList.size() == 0) return;
         String lastOperation = restoreList.get(restoreList.size() - 1).getOperation();
         switch (lastOperation) {
             case "ADD":
