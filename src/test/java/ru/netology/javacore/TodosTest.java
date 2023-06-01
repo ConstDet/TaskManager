@@ -18,7 +18,7 @@ class TodosTest {
     }
 
     @Test
-    void removeTask() {
+    void removeTaskTest() {
         TreeSet<String> expect = new TreeSet<>(Collections.singleton("Вторая"));
 
         Todos todos = new Todos();
@@ -31,7 +31,7 @@ class TodosTest {
     }
 
     @Test
-    void getAllTasks() {
+    void getAllTasksTest() {
         String expect = "Вторая Первая Третья";
 
         Todos todos = new Todos();
@@ -44,7 +44,7 @@ class TodosTest {
     }
 
     @Test
-    void restore() {
+    void restoreTest() {
         TreeSet<String> expect = new TreeSet<>();
         expect.add("Первая");
         expect.add("Вторая");
